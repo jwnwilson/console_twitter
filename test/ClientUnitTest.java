@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Created by noel on 14/01/16.
  */
-public class ClientTest {
+public class ClientUnitTest {
     @Test
     public void testSomething() {
 

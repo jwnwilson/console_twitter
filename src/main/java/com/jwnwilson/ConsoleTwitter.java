@@ -8,8 +8,8 @@ import java.util.List;
  * Main container for Classes and logic for this exercise
  */
 public class ConsoleTwitter {
-    List<User> users;
-    List<Wall> walls;
+    private List<User> users;
+    private List<Wall> walls;
 
     public ConsoleTwitter(){
 
