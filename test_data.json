@@ -1,0 +1,20 @@
+{
+  "users": {
+    "David": {
+      "messages":[
+        ["Test Message", "2015-04-23T18:25:43.511Z"]
+      ],
+      "follows": [
+        "Ben"
+      ]
+    },
+    "Ben": {
+      "messages":[
+        ["Test Message 2", "2016-01-01T18:25:43.511Z"]
+      ],
+      "follows":[
+        "David"
+      ]
+    }
+  }
+}

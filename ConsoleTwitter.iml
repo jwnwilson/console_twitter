@@ -23,5 +23,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="au.net.causal.projo:projo-jodatime:1.0" level="project" />
+    <orderEntry type="library" name="org.json:json:20151123" level="project" />
   </component>
 </module>
