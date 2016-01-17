@@ -17,12 +17,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.logging.SimpleFormatter;
 
-/** convenient "-flag opt" combination */
-class Option {
-    String flag, opt;
-    public Option(String flag, String opt) { this.flag = flag; this.opt = opt; }
-}
-
 /**
  * @Author: Noel Wilson
  *
@@ -31,24 +25,9 @@ class Option {
  *
  * Valid args:
  * -v --verbose: Turn on verbose mode to see logs and details
- * --init_data: File path of initial data to load into application on startup.
+ * -i --init_data: File path of initial data to load into application on startup.
  */
 public class Main {
-    /**
-     * Check if a flag has been set in the args
-     *
-     * @param flags List of parsed flags
-     * @param flag Flag to check for
-     * @return
-     */
-    public static boolean flagSet(List<String> flags, String flag){
-        for( String setFlat : flags){
-            if( setFlat.equals(flag))
-                return true;
-        }
-        return false;
-    }
-
     /**
      * Check if option has been set in args
      *
@@ -56,7 +35,7 @@ public class Main {
      * @param opt Arg to check for
      * @return
      */
-    public static boolean optSet(Map<String, String> opts, String opt){
+    public static boolean optSet(Map<String, List<String>> opts, String opt){
         for( String setOpt : opts.keySet()){
             if( setOpt.equals(opt))
                 return true;
@@ -87,42 +66,32 @@ public class Main {
      * @param args String array args
      */
     public static void main(String[] args) {
-        List<String> argsList = new ArrayList<String>();
-        Map<String, String> optsList = new HashMap<String, String>();
-        List<String> flagList = new ArrayList<String >();
         String initFile = null;
-
+        List<String> options = null;
+        final Map<String, List<String>> params = new HashMap<String, List<String>>();
         // Parse args
         for (int i = 0; i < args.length; i++) {
-            switch (args[i].charAt(0)) {
-                case '-':
-                    // if not last arg
-                    if((args.length > (i+1))) {
-                        // If no second arg persume flag
-                        if (args[i + 1].startsWith("-")) {
-                            flagList.add(args[i].replace("-", ""));
-                        }
-                        // Add option
-                        else {
-                            optsList.put(args[i].replace("-", ""), args[i + 1]);
-                            i++;
-                        }
-                        break;
-                    }
-                    else{
-                        flagList.add(args[i].replace("-", ""));
-                        break;
-                    }
-                default:
-                    // arg
-                    argsList.add(args[i]);
-                    break;
+            final String a = args[i];
+            if (a.charAt(0) == '-') {
+                if (a.length() < 2) {
+                    System.err.println("Error at argument " + a);
+                    return;
+                }
+                options = new ArrayList<String>();
+                params.put(a.substring(1), options);
+            }
+            else if (options != null) {
+                options.add(a);
+            }
+            else {
+                System.err.println("Illegal parameter usage");
+                return;
             }
         }
 
         Level level;
         // Handle verbose arg
-        if( flagSet(flagList, "verbose") || flagSet(flagList, "v")){
+        if( optSet(params, "verbose") || optSet(params, "v")){
             // Set logging level
             level = Level.ALL;
         }
@@ -132,12 +101,13 @@ public class Main {
         }
 
         // handle input file
-        if( optSet(optsList, "init_data") || optSet(optsList, "i")){
+        if( optSet(params, "init_data")){
             // get init file
-            initFile = optsList.get("init_data");
-            if(initFile == null){
-                initFile = optsList.get("i");
-            }
+            initFile = params.get("init_data").get(0);
+        }
+        else if(optSet(params, "i")){
+            // get init file
+            initFile = params.get("i").get(0);
         }
 
         Client.LOGGER.setLevel(level);
