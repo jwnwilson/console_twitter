@@ -23,8 +23,24 @@ class Option {
     public Option(String flag, String opt) { this.flag = flag; this.opt = opt; }
 }
 
+/**
+ * @Author: Noel Wilson
+ *
+ * Entry point for application will parse args then run client to handle input / output and
+ * ConsoleTwitter object to handle logic for the application.
+ *
+ * Valid args:
+ * -v --verbose: Turn on verbose mode to see logs and details
+ * --init_data: File path of initial data to load into application on startup.
+ */
 public class Main {
-
+    /**
+     * Check if a flag has been set in the args
+     *
+     * @param flags List of parsed flags
+     * @param flag Flag to check for
+     * @return
+     */
     public static boolean flagSet(List<String> flags, String flag){
         for( String setFlat : flags){
             if( setFlat.equals(flag))
@@ -33,6 +49,13 @@ public class Main {
         return false;
     }
 
+    /**
+     * Check if option has been set in args
+     *
+     * @param opts Map of parsed args
+     * @param opt Arg to check for
+     * @return
+     */
     public static boolean optSet(Map<String, String> opts, String opt){
         for( String setOpt : opts.keySet()){
             if( setOpt.equals(opt))
@@ -42,7 +65,9 @@ public class Main {
     }
 
     /**
-     * Not used for this exercise
+     * Not used for this exercise, used to add additional logging handlers if needed.
+     *
+     * @param level Logging Level to set new logging handler to
      */
     public static void configureAdditionalLogger(Level level){
         ConsoleHandler ch = new ConsoleHandler();
@@ -56,12 +81,18 @@ public class Main {
         JSONReader.LOGGER.addHandler(ch);
     }
 
+    /**
+     * Main entry point of application
+     *
+     * @param args String array args
+     */
     public static void main(String[] args) {
         List<String> argsList = new ArrayList<String>();
         Map<String, String> optsList = new HashMap<String, String>();
         List<String> flagList = new ArrayList<String >();
         String initFile = null;
 
+        // Parse args
         for (int i = 0; i < args.length; i++) {
             switch (args[i].charAt(0)) {
                 case '-':
@@ -106,6 +137,7 @@ public class Main {
         Wall.LOGGER.setLevel(level);
         JSONReader.LOGGER.setLevel(level);
 
+        // Initialise Client and ConsoleTwitter
         ConsoleTwitter consoleTwitter = new ConsoleTwitter();
         Client client = new Client(consoleTwitter);
 
@@ -114,6 +146,7 @@ public class Main {
             consoleTwitter.loadInitData(initFile);
         }
 
+        // Start input loop
         client.prompt();
     }
 }
