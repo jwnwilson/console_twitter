@@ -20,13 +20,13 @@ Additional run args
 
 The application has the following commands:
 
-posting: <user name> -> <message>
+posting: (user name) -> (message)
 
-reading: <user name>
+reading: (user name)
 
-following: <user name> follows <another user>
+following: (user name) follows (another user)
 
-wall: <user name> wall
+wall: (user name) wall
 
 Examples in exercise described below.
 
