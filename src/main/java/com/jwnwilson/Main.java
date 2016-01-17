@@ -96,17 +96,23 @@ public class Main {
         for (int i = 0; i < args.length; i++) {
             switch (args[i].charAt(0)) {
                 case '-':
-                    if (args[i].length() < 2)
-                        throw new IllegalArgumentException("Not a valid argument: "+args[i]);
-                    // if no arg persume flag
-                    if (args.length-1 > i && args[i + 1].startsWith("-"))
-                        flagList.add(args[i].replace("-", ""));
-                    else {
-                        // add opt
-                        optsList.put(args[i].replace("-", ""), args[i + 1]);
-                        i++;
+                    // if not last arg
+                    if((args.length > (i+1))) {
+                        // If no second arg persume flag
+                        if (args[i + 1].startsWith("-")) {
+                            flagList.add(args[i].replace("-", ""));
+                        }
+                        // Add option
+                        else {
+                            optsList.put(args[i].replace("-", ""), args[i + 1]);
+                            i++;
+                        }
+                        break;
                     }
-                    break;
+                    else{
+                        flagList.add(args[i].replace("-", ""));
+                        break;
+                    }
                 default:
                     // arg
                     argsList.add(args[i]);
@@ -126,9 +132,12 @@ public class Main {
         }
 
         // handle input file
-        if( optSet(optsList, "init_data")){
+        if( optSet(optsList, "init_data") || optSet(optsList, "i")){
             // get init file
             initFile = optsList.get("init_data");
+            if(initFile == null){
+                initFile = optsList.get("i");
+            }
         }
 
         Client.LOGGER.setLevel(level);

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: 1.8.0_65 (Oracle Corporation)
+Main-Class: com.jwnwilson.Main
+Class-Path: lib/joda-time-2.3.jar lib/json-20151123.jar
+

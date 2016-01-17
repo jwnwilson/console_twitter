@@ -76,6 +76,9 @@ public class Client {
         if(args.size() == 0){
             return;
         }
+        if(args.get(0).equals("quit")){
+            return;
+        }
 
         String userStr = args.get(0);
         User user = source.getOrCreateUser(userStr);

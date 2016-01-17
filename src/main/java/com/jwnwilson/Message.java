@@ -97,6 +97,8 @@ public class Message {
         PeriodFormatter formatter = builder.minimumPrintedDigits(2).toFormatter();
 
         String elapsed = formatter.print(period);
+        if(elapsed.equals(""))
+            elapsed = " 0 seconds ";
         return "(" + elapsed + "ago )";
     }
 
