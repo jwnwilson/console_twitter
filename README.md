@@ -1,18 +1,22 @@
-## Console Twitter Exercise
+# Console Twitter Exercise
 
 To run the application in a terminal run:
 
 ./compile.sh
+
 ./run.sh
 
 Additional run args
 
-# Verbose mode
+## Verbose mode
+
 ./run.sh -v
-# Load initial json file
+
+## Load initial json file
+
 ./run.sh -i test_data.json
 
-Simple Console Twitter clone:
+## Simple Console Twitter clone:
 
 The application has the following commands:
 
