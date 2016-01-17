@@ -23,6 +23,7 @@ class MessageComparator implements Comparator<Message> {
 
 /**
  * @Author: Noel Wilson
+ * @Date: 16/01/2016
  *
  * Message object holds message string, date created and a link to the user who owns
  * this message

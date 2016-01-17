@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 /**
  * @Author: Noel Wilson
+ * @Date: 16/01/2016
  *
  * Wall Class used to hold all user messages.
  */

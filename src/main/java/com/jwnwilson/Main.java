@@ -2,7 +2,7 @@
  * Entry Point for Console Twitter Exercise
  *
  * @Author: Noel Wilson
- * @Date: 14/01/2016
+ * @Date: 16/01/2016
  *
  * Main entry point for Console Twitter Designed to work on a terminal
  */

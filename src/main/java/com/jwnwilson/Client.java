@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 /**
  * @Author: Noel Wilson
+ * @Date: 16/01/2016
  *
  * A simple terminal input which will send the strings to the ConsoleTwitter
  * Wraps output in a method to be redined by a derived class.

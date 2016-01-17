@@ -11,7 +11,14 @@ import org.junit.Test;
 import java.util.List;
 
 /**
- * Created by noel on 14/01/16.
+ * @Author: Noel Wilson
+ * @Date: 16/01/2016
+ *
+ * Test functionality of the client and the 4 main commands:
+ * read
+ * post
+ * wall
+ * follow
  */
 public class ClientFunctionalityTest {
     /**

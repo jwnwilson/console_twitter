@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 /**
  * @Author: Noel Wilson
+ * @Date: 16/01/2016
  *
  * User Class for holding user data, currently used to hold username, Wall object
  * and List of Users that the user is following.

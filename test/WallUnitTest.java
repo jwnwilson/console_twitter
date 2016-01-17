@@ -1,6 +1,3 @@
-/**
- * Created by noel on 14/01/16.
- */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +7,10 @@ import com.jwnwilson.Wall;
 import com.jwnwilson.User;
 import com.jwnwilson.Message;
 
+/**
+ * @Author: Noel Wilson
+ * @Date: 16/01/2016
+ */
 public class WallUnitTest {
     @Test
     /**

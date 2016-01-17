@@ -5,7 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by noel on 14/01/16.
+ * @Author: Noel Wilson
+ * @Date: 16/01/2016
+ *
  */
 public class UserUnitTest {
     /**
